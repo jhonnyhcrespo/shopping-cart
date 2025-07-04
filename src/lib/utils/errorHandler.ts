@@ -12,6 +12,16 @@ export class NotFoundError extends Error {
 }
 
 /**
+ * Custom error class for not found resources (HTTP 400).
+ */
+export class BadRequestError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "BadRequestError";
+  }
+}
+
+/**
  * Handles errors and returns a standardized JSON response.
  */
 export const handleError = (error: unknown) => {
@@ -22,6 +32,10 @@ export const handleError = (error: unknown) => {
   if (error instanceof NotFoundError) {
     status = 404;
     code = 'NOT_FOUND';
+    message = error.message;
+  } else if (error instanceof BadRequestError) {
+    status = 400;
+    code = "BAD_REQUEST";
     message = error.message;
   } else if (error instanceof Error) {
     // Catch any other errors 
