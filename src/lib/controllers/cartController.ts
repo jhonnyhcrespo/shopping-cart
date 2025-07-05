@@ -47,7 +47,6 @@ export class CartController {
     requestBody: AddCartItemRequest
   ): Promise<NextResponse> {
     try {
-
       if (!cartId) {
         return handleError(
           new BadRequestError("Cart ID is required as a path parameter.")
@@ -71,6 +70,33 @@ export class CartController {
         requestBody
       );
       return NextResponse.json(newCartItem, { status: 201 });
+    } catch (error: unknown) {
+      return handleError(error);
+    }
+  }
+
+  /**
+   * Handles DELETE /carts/{cartId}/items/{itemId} request.
+   * Removes a specific item from the cart.
+   */
+  public async removeCartItem(
+    cartId: string,
+    itemId: string
+  ): Promise<NextResponse> {
+    try {
+      if (!cartId) {
+        return handleError(
+          new BadRequestError("Cart ID is required as a path parameter.")
+        );
+      }
+      if (!itemId) {
+        return handleError(
+          new BadRequestError("Item ID is required as a path parameter.")
+        );
+      }
+
+      const cart = await this.cartService.removeCartItem(cartId, itemId);
+      return NextResponse.json(cart, { status: 200 });
     } catch (error: unknown) {
       return handleError(error);
     }

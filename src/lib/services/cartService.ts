@@ -59,4 +59,23 @@ export class CartService {
     const savedCart = await this.cartRepository.updateCart(cartWithTotals);
     return savedCart;
   }
+
+  /**
+   * Removes an item from a specific cart.
+   */
+  public async removeCartItem(cartId: string, itemId: string): Promise<Cart> {
+    const cart = await this.cartRepository.removeCartItem(cartId, itemId);
+    const customer = await this.customerRepository.findById(cart.customerId);
+
+    if (!customer) {
+      throw new NotFoundError(`Customer with ID '${cart.customerId}' not found for cart ${cartId}.`);
+    }
+
+    const cartWithTotals = await this.discountCalculator.calculate(
+      cart,
+      customer
+    );
+
+    return await this.cartRepository.updateCart(cartWithTotals);
+  }
 }

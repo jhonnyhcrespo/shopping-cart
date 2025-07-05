@@ -79,4 +79,20 @@ export class CartRepository {
     carts[index] = { ...updatedCart };
     return Promise.resolve(carts[index]);
   }
+
+  /**
+   * Removes an item from a specified cart.
+   * This method modifies the cart in place but does NOT recalculate totals.
+   */
+  public async removeCartItem(cartId: string, itemId: string): Promise<Cart> {
+    const cart = carts.find((c) => c.id === cartId);
+    if (!cart) {
+      throw new Error(`Cart with ID ${cartId} not found.`);
+    }
+
+    // remove item
+    cart.items = cart.items.filter((item) => item.id !== itemId);
+
+    return Promise.resolve(cart);
+  }
 }

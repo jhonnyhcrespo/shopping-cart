@@ -11,7 +11,7 @@ export async function POST(
   request: NextRequest,
   context: { params: { cartId: string } }
 ) {
-  const { cartId } = context.params;
+  const { cartId } = await context.params;
   const requestBody: AddCartItemRequest = await request.json();
 
   return cartController.addCartItem(cartId, requestBody);
