@@ -8,7 +8,7 @@ const cartController = new CartController();
  */
 export async function DELETE(
   request: NextRequest,
-  context: { params: { cartId: string, itemId: string } }
+  context: { params: Promise<{ cartId: string, itemId: string }> }
 ) {
   const { cartId, itemId } = await context.params;
   return cartController.removeCartItem(cartId, itemId);

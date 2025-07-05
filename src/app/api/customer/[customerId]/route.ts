@@ -5,7 +5,7 @@ const customerController = new CustomerController();
 
 export async function GET(
   request: NextRequest,
-  context: { params: { customerId: string } }
+  context: { params: Promise<{ customerId: string }> }
 ) {
   const { customerId } = await context.params;
   return customerController.getCustomerById(customerId);
