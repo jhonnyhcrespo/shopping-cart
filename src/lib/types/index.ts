@@ -4,8 +4,6 @@ export interface Customer {
   lastName: string;
   email: string;
   customerType: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface ErrorResponse {
@@ -18,23 +16,36 @@ export interface Cart {
   customerId: string;
   items: CartItem[];
   totalItems: number;
-  subtotal: number;
-  createdAt: string;
-  updatedAt: string;
+  subtotal?: number;
+  discount: Discount;
+  total: number;
 }
 
 export interface CartItem {
   id: string;
   productId: string;
   productName: string;
-  sku: string;
   quantity: number;
   unitPrice: number;
   totalPrice: number;
-  addedAt: string;
-  updatedAt?: string;
 }
 
 export interface CartsResponse {
   carts: Cart[];
+}
+
+export interface AddCartItemRequest {
+  productId: string;
+  quantity: number;
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+}
+
+export interface Discount {
+  name: string;
+  amount: number;
 }
