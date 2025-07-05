@@ -28,7 +28,7 @@ The project follows a standard Next.js application structure, with a focus on a 
 
 - **`src/app/api`**: Contains all the API route handlers, which are responsible for handling incoming HTTP requests and sending back responses. Each endpoint has its own route file, and they are organized into subdirectories based on the resource they handle (e.g., `carts`, `customer`).
 
-- **`src/lib/controllers`**: These are responsible for handling incoming requests and validating input. They are called by the API route handlers and orchestrate the necessary operations to fulfill a request.
+- **`src/lib/controllers`**: These are responsible for handling incoming requests and validating **input**. They are called by the API route handlers and orchestrate the necessary operations to fulfill a request.
 
 - **`src/lib/services`**: Services provide the core functionality of the application. They encapsulate the business logic and are responsible for interacting with the data layer.
 
@@ -97,3 +97,28 @@ Request body:
 | Parameter    | Type     | Description                       |
 | :----------- | :------- | :-------------------------------- |
 | `customerId` | `string` | **Required**. Id of customer to retrieve |
+
+## Live Examples
+
+Get cart by customer ID
+
+```bash
+curl --location 'https://shopping-cart-gamma-navy.vercel.app/api/carts?customerId=cust_001'
+```
+
+Add item to cart
+
+```bash
+curl --location 'https://shopping-cart-gamma-navy.vercel.app/api/carts/cart_001/items' \
+--header 'Content-Type: application/json' \
+--data '{
+    "productId": "prod_002",
+    "quantity": 1
+}'
+```
+
+Remove item from cart
+
+```bash
+curl --location --request DELETE 'https://shopping-cart-gamma-navy.vercel.app/api/carts/cart_001/items/item_001'
+```
