@@ -1,36 +1,99 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Run Locally
 
-First, run the development server:
+Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start the server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  pnpm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Running Tests
 
-## Learn More
+To run tests, run the following command
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+  pnpm run test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Architecture
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project follows a standard Next.js application structure, with a focus on a clean separation of concerns. The core logic is organized into the following directories:
 
-## Deploy on Vercel
+- **`src/app/api`**: Contains all the API route handlers, which are responsible for handling incoming HTTP requests and sending back responses. Each endpoint has its own route file, and they are organized into subdirectories based on the resource they handle (e.g., `carts`, `customer`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **`src/lib/controllers`**: These are responsible for handling incoming requests and validating input. They are called by the API route handlers and orchestrate the necessary operations to fulfill a request.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **`src/lib/services`**: Services provide the core functionality of the application. They encapsulate the business logic and are responsible for interacting with the data layer.
+
+- **`src/lib/repositories`**: The repositories are responsible for all the data access logic. They provide a clean API for the services to interact with the data sources, without exposing the implementation details.
+
+- **`src/lib/data`**: This directory contains the in-memory data stores for the application. In a real-world application, this would be replaced with a database.
+
+- **`src/lib/discounts`**: This directory contains the logic for applying discounts to the shopping cart. It follows a strategy pattern, where each discount method is implemented as a separate class.
+
+- **`src/lib/types`**: This directory contains all the TypeScript type definitions used throughout the application.
+
+- **`src/lib/utils`**: This directory contains utility functions that are used across the application.
+
+## API Reference
+
+### Carts
+
+#### Get all carts for a customer
+
+```http
+  GET /api/carts?customerId=${customerId}
+```
+
+| Parameter    | Type     | Description                       |
+| :----------- | :------- | :-------------------------------- |
+| `customerId` | `string` | **Required**. Id of customer to retrieve carts for |
+
+#### Add item to cart
+
+```http
+  POST /api/carts/${cartId}/items
+```
+
+| Parameter    | Type     | Description                       |
+| :----------- | :------- | :-------------------------------- |
+| `cartId` | `string` | **Required**. Id of cart to add items to |
+
+Request body:
+
+```json
+{
+  "productId": "string",
+  "quantity": "number"
+}
+```
+
+#### Remove item from cart
+
+```http
+  DELETE /api/carts/${cartId}/items/${itemId}
+```
+
+| Parameter    | Type     | Description                       |
+| :----------- | :------- | :-------------------------------- |
+| `cartId` | `string` | **Required**. Id of cart to remove items from |
+| `itemId` | `string` | **Required**. Id of item to remove from cart |
+
+### Customer
+
+#### Get customer by id
+
+```http
+  GET /api/customer/${customerId}
+```
+
+| Parameter    | Type     | Description                       |
+| :----------- | :------- | :-------------------------------- |
+| `customerId` | `string` | **Required**. Id of customer to retrieve |
