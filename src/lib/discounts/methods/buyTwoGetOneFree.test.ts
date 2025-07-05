@@ -5,7 +5,7 @@ describe('BuyTwoGetOneFree', () => {
   let discountMethod: BuyTwoGetOneFree;
   const mockCustomer: Customer = {
     id: 'cust_test', firstName: 'Test', lastName: 'User', email: 'test@example.com',
-    customerType: 'Standard',
+    customerType: 'Common',
   };
 
   beforeEach(() => {
