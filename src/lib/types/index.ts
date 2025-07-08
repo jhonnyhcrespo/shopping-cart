@@ -23,10 +23,8 @@ export interface Cart {
 
 export interface CartItem {
   id: string;
-  productId: string;
-  productName: string;
+  product: Product;
   quantity: number;
-  unitPrice: number;
   totalPrice: number;
 }
 
@@ -43,6 +41,7 @@ export interface Product {
   id: string;
   name: string;
   price: number;
+  image: string;
 }
 
 export interface Discount {
