@@ -1,10 +1,11 @@
-import { Button } from '@chakra-ui/react'
-import React, { FC } from 'react'
+"use client";
 
-interface CartButtonProps {
-  setOpen: (open: boolean) => void
-}
+import { Button } from "@chakra-ui/react";
+import React from "react";
+import { useCartDrawer } from "./cart-drawer-provider";
 
-export const CartButton: FC<CartButtonProps> = ({ setOpen }) => {
-  return <Button onClick={() => setOpen(true)}>Open Cart</Button>;
+export const CartButton = () => {
+  const { onOpen } = useCartDrawer();
+
+  return <Button onClick={onOpen}>Open Cart</Button>;
 };
