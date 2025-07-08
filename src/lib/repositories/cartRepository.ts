@@ -41,7 +41,7 @@ export class CartRepository {
     }
 
     const existingItem = cart.items.find(
-      (item) => item.productId === itemRequest.productId
+      (item) => item.product.id === itemRequest.productId
     );
 
     let newCartItem: CartItem;
@@ -49,16 +49,19 @@ export class CartRepository {
     if (existingItem) {
       // Update existing item's quantity and total price
       existingItem.quantity += itemRequest.quantity;
-      existingItem.totalPrice = existingItem.quantity * existingItem.unitPrice;
+      existingItem.totalPrice = existingItem.quantity * existingItem.product.price;
       newCartItem = existingItem;
     } else {
       // Add new item to cart
       newCartItem = {
         id: generateUniqueId("item_"),
-        productId: product.id,
-        productName: product.name,
+        product: {
+          id: product.id,
+          name: product.name,
+          image: product.image,
+          price: product.price
+        },
         quantity: itemRequest.quantity,
-        unitPrice: product.price,
         totalPrice: itemRequest.quantity * product.price,
       };
       cart.items.push(newCartItem);

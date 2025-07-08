@@ -11,7 +11,7 @@ export const products: Product[] = [
   {
     id: "prod_002",
     name: "Crispy Chicken Sandwich",
-    price: 10.5,
+    price: 10.50,
     image:
       "https://res.cloudinary.com/dhq7es8xo/image/upload/v1751992514/chicken-sandwich_e79s10.jpg",
   },
@@ -32,21 +32,21 @@ export const products: Product[] = [
   {
     id: "prod_005",
     name: "Classic Hot Dog",
-    price: 6.0,
+    price: 6.00,
     image:
       "https://res.cloudinary.com/dhq7es8xo/image/upload/v1751992515/hot-dog_zcmrco.jpg",
   },
   {
     id: "prod_006",
     name: "Onion Rings",
-    price: 5.5,
+    price: 5.50,
     image:
       "https://res.cloudinary.com/dhq7es8xo/image/upload/v1751992514/cripty-golden-onion-rings_wzgmig.jpg",
   },
   {
     id: "prod_007",
     name: "Chocolate Milkshake",
-    price: 7.2,
+    price: 7.20,
     image:
       "https://res.cloudinary.com/dhq7es8xo/image/upload/v1751992514/chocolate-milkshake_vlowre.jpg",
   },
@@ -60,14 +60,14 @@ export const products: Product[] = [
   {
     id: "prod_009",
     name: "Fish and Chips",
-    price: 14.5,
+    price: 14.50,
     image:
       "https://res.cloudinary.com/dhq7es8xo/image/upload/v1751992515/golden-fish-and-chips_swohof.jpg",
   },
   {
     id: "prod_010",
     name: "Soft Drink (Medium)",
-    price: 3.0,
+    price: 3.00,
     image:
       "https://res.cloudinary.com/dhq7es8xo/image/upload/v1751992515/medium-sized-soft-drink_hzovno.jpg",
   },

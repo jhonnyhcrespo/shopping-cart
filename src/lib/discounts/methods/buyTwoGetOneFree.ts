@@ -20,14 +20,14 @@ export class BuyTwoGetOneFree implements IDiscountStrategy {
       // find the item with the lowest price
       const lowestPricedItem = cart.items.reduce(
         (lowestPriceItem, currentItem) => {
-          return currentItem.unitPrice < lowestPriceItem.unitPrice
+          return currentItem.product.price < lowestPriceItem.product.price
             ? currentItem
             : lowestPriceItem;
         },
       );
 
       const freeProductDiscountAmount = lowestPricedItem
-        ? lowestPricedItem.unitPrice
+        ? lowestPricedItem.product.price
         : 0;
 
       const finalTotal = subtotal - freeProductDiscountAmount;
