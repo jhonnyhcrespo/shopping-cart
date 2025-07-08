@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CartsResponse, Cart as CartType } from "@/lib/types";
+import { useCustomer } from "@/hooks/use-customer";
 
 interface UseCartOutput {
   cart: CartType | null;
@@ -15,19 +16,15 @@ interface UseCartOutput {
 
 // TODO: Replace async state management with TanStack Query
 export const useCart = (): UseCartOutput => {
-  // TODO: read from somewhere else
-  const customerId = "cust_001";
+  const { customerId } = useCustomer();
   const [cart, setCart] = useState<CartType | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_CART_API_BASE_URL}/api/carts?customerId=${customerId}`
-        // {
-        //   cache: "no-store",
-        // }
       );
 
       if (!res.ok) {
@@ -47,7 +44,7 @@ export const useCart = (): UseCartOutput => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [customerId]);
 
   const addItem = async (
     cartId: string,
@@ -114,7 +111,7 @@ export const useCart = (): UseCartOutput => {
   // fetch cart on mount
   useEffect(() => {
     fetchCart();
-  }, []);
+  }, [fetchCart]);
 
   return {
     cart,

@@ -15,11 +15,4 @@ export const customers: Customer[] = [
     email: "bob.johnson@example.com",
     customerType: "VIP",
   },
-  {
-    id: "cust_003",
-    firstName: "Charlie",
-    lastName: "Brown",
-    email: "charlie.brown@example.com",
-    customerType: "Common",
-  },
 ];
