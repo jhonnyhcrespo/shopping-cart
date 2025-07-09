@@ -9,9 +9,14 @@ interface UseCartOutput {
   addItem: (
     cartId: string,
     productId: string,
-    quantity: number
+    quantity: number,
+    onAddItem?: () => void
   ) => Promise<void>;
-  removeItem: (cartId: string, itemId: string) => Promise<void>;
+  removeItem: (
+    cartId: string,
+    itemId: string,
+    onRemoveItem?: () => void
+  ) => Promise<void>;
 }
 
 // TODO: Replace async state management with TanStack Query
@@ -49,7 +54,8 @@ export const useCart = (): UseCartOutput => {
   const addItem = async (
     cartId: string,
     productId: string,
-    quantity: number
+    quantity: number,
+    onAddItem?: () => void
   ) => {
     try {
       setLoading(true);
@@ -73,6 +79,7 @@ export const useCart = (): UseCartOutput => {
 
       // Refresh cart after adding item
       await fetchCart();
+      onAddItem?.();
     } catch (err) {
       console.error("Failed to add item:", err);
     } finally {
@@ -80,7 +87,11 @@ export const useCart = (): UseCartOutput => {
     }
   };
 
-  const removeItem = async (cartId: string, itemId: string) => {
+  const removeItem = async (
+    cartId: string,
+    itemId: string,
+    onRemoveItem?: () => void
+  ) => {
     try {
       setLoading(true);
       const res = await fetch(
@@ -101,6 +112,7 @@ export const useCart = (): UseCartOutput => {
 
       // Refresh cart after adding item
       await fetchCart();
+      onRemoveItem?.();
     } catch (err) {
       console.error("Failed to remove item:", err);
     } finally {

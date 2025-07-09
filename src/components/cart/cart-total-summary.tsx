@@ -15,17 +15,17 @@ export const CartTotalSummary: FC<CartTotalSummaryProps> = ({ cart }) => {
       marginTop="auto"
     >
       <Flex justifyContent="space-between">
-        <Text>Subtotal:</Text>
+        <Text>Subtotal</Text>
         <Text>{cart.subtotal}</Text>
       </Flex>
       {cart.discount.amount > 0 && (
         <Flex justifyContent="space-between">
-          <Text>Discount:</Text>
+          <Text>Discount ({cart.discount.name})</Text>
           <Text>{cart.discount.amount}</Text>
         </Flex>
       )}
       <Flex justifyContent="space-between">
-        <Text>Total:</Text>
+        <Text>Total</Text>
         <Text>{cart.total}</Text>
       </Flex>
     </Box>

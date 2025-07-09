@@ -6,6 +6,7 @@ import { Box, Container } from "@chakra-ui/react";
 import { PromoBanner } from "@/components/promotions/promo-banner";
 import { CartDrawerProvider } from "@/components/cart/cart-drawer-provider";
 import { CartProvider } from "@/components/cart/cart-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 export default async function Home() {
   return (
@@ -18,6 +19,7 @@ export default async function Home() {
             <ProductsGrid />
           </Container>
         </CartDrawerProvider>
+        <Toaster />
       </CartProvider>
     </Box>
   );

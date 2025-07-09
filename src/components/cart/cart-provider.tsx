@@ -11,7 +11,8 @@ interface CartContextType {
   addItem: (
     cartId: string,
     productId: string,
-    quantity: number
+    quantity: number,
+    onAddItem: () => void
   ) => Promise<void>;
   removeItem: (cartId: string, itemId: string) => Promise<void>;
 }

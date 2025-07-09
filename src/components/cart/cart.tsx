@@ -1,20 +1,30 @@
 "use client";
 
-import { Box, Stack, Text } from "@chakra-ui/react";
+import { Box, Center, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { CartItem } from "./cart-item";
 import { CartTotalSummary } from "./cart-total-summary";
 import { useCart } from "./use-cart";
+import { toaster } from "../ui/toaster";
 
 export const Cart = () => {
   const { cart, removeItem } = useCart();
 
   if (cart == null || cart.items.length === 0) {
     return (
-      <Box>
+      <Center alignItems="center" height="full">
         <Text>Your cart is empty</Text>
-      </Box>
+      </Center>
     );
+  }
+
+  const removeItemHandler = (cartItemId: string) => {
+    removeItem(cart.id, cartItemId, () => {
+      toaster.create({
+        description: "Item removed successfully",
+        type: "success",
+      });
+    });
   }
 
   return (
@@ -24,7 +34,7 @@ export const Cart = () => {
           <CartItem
             key={cartItem.id}
             item={cartItem}
-            removeItem={() => removeItem(cart.id, cartItem.id)}
+            removeItem={() => removeItemHandler(cartItem.id)}
           />
         ))}
       </Box>

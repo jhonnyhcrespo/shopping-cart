@@ -3,7 +3,7 @@ import { Cart, Customer, Discount } from "../../types";
 
 export class VipDiscount implements IDiscountStrategy {
   id = "VIP_DISCOUNT";
-  name = "VIP 15% Discount";
+  name = "15% off";
   private readonly VIP_DISCOUNT_RATE = 0.15;
 
   applyDiscount(cart: Cart, customer: Customer): ApplyDiscountOutput {

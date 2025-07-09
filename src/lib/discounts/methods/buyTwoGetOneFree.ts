@@ -3,7 +3,7 @@ import { Cart, Customer, Discount } from "../../types";
 
 export class BuyTwoGetOneFree implements IDiscountStrategy {
   id = "BUY_TWO_GET_ONE_FREE";
-  name = "Buy 2 Get 1 Free (Lowest Priced Item)";
+  name = "Buy 2 Get 1 Free";
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   applyDiscount(cart: Cart, _customer: Customer): ApplyDiscountOutput {
