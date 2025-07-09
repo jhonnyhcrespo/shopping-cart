@@ -12,8 +12,17 @@ interface ProductCardProps {
 
 export const ProductCard: FC<ProductCardProps> = ({ id, name, price, image }) => {
   return (
-    <Stack id='product-card' data-testid="product-card">
-      <Image width={200} height={200} layout='responsive' src={image} alt={name} />
+    <Stack id="product-card" data-testid="product-card">
+      <Image
+        width={200}
+        height={200}
+        style={{
+          width: "100%",
+          height: "auto",
+        }}
+        src={image}
+        alt={name}
+      />
       <Text>{name}</Text>
       <Text>{price}</Text>
       <ProductCardCTA productId={id} />
