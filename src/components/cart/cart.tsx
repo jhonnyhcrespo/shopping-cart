@@ -4,11 +4,11 @@ import { Box, Center, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { CartItem } from "./cart-item";
 import { CartTotalSummary } from "./cart-total-summary";
-import { useCart } from "./use-cart";
 import { toaster } from "../ui/toaster";
+import { useCartContext } from "./cart-provider";
 
 export const Cart = () => {
-  const { cart, removeItem } = useCart();
+  const { cart, removeItem } = useCartContext();
 
   if (cart == null || cart.items.length === 0) {
     return (

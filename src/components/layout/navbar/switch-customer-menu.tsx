@@ -16,7 +16,10 @@ export const SwitchCustomerMenu = () => {
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            <Menu.Item value="common" onClick={() => switchCustomer("Common")}>
+            <Menu.Item
+              value="common"
+              onClick={() => switchCustomer("Common")}
+            >
               Common
             </Menu.Item>
             <Menu.Item value="vip" onClick={() => switchCustomer("Vip")}>

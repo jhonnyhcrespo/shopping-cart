@@ -1,29 +1,11 @@
-// Server Component
-
 import { SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 import { ProductCard } from "./product-card";
-import { Product } from "@/lib/types";
+import { useProducts } from "@/hooks/use-products";
 
-const getProducts = async () => {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_PRODUCTS_API_BASE_URL}/api/products`)
+export const ProductsGrid = () => {
 
-    if (!res.ok) {
-      console.error("Failed to fetch products:", res.status, res.statusText);
-    }
-
-    const products: Product[] = await res.json();
-    return products;
-  } catch (error) {
-    console.error("Failed to fetch products:", error);
-    return [];
-  }
-}
-
-export const ProductsGrid = async () => {
-
-  const products = await getProducts();
+  const { products } = useProducts()
 
   return (
     <SimpleGrid

@@ -14,7 +14,11 @@ interface CartContextType {
     quantity: number,
     onAddItem: () => void
   ) => Promise<void>;
-  removeItem: (cartId: string, itemId: string) => Promise<void>;
+  removeItem: (
+    cartId: string,
+    itemId: string,
+    onRemoveItem: () => void
+  ) => Promise<void>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);

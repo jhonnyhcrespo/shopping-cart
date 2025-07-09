@@ -1,4 +1,4 @@
-// Server Component
+"use client";
 
 import Navbar from "@/components/layout/Navbar";
 import { ProductsGrid } from "@/components/products-grid/products-grid";
@@ -7,20 +7,23 @@ import { PromoBanner } from "@/components/promotions/promo-banner";
 import { CartDrawerProvider } from "@/components/cart/cart-drawer-provider";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { Suspense } from "react";
 
-export default async function Home() {
+export default function Home() {
   return (
-    <Box>
-      <CartProvider>
-        <CartDrawerProvider>
-          <Navbar />
-          <PromoBanner />
-          <Container maxW="8xl" py={8}>
-            <ProductsGrid />
-          </Container>
-        </CartDrawerProvider>
-        <Toaster />
-      </CartProvider>
-    </Box>
+    <Suspense>
+      <Box>
+        <CartProvider>
+          <CartDrawerProvider>
+            <Navbar />
+            <PromoBanner />
+            <Container maxW="8xl" py={8}>
+              <ProductsGrid />
+            </Container>
+          </CartDrawerProvider>
+          <Toaster />
+        </CartProvider>
+      </Box>
+    </Suspense>
   );
 }
