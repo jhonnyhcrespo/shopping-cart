@@ -8,6 +8,12 @@ Install dependencies
   pnpm install
 ```
 
+Copy the .env.example file to .env
+
+```bash
+  cp .env.example .env
+```
+
 Start the server
 
 ```bash
