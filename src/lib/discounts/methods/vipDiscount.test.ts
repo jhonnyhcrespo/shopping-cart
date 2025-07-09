@@ -34,18 +34,24 @@ describe('vipDiscount', () => {
     const cartItems: CartItem[] = [
       {
         id: "item_001",
-        productId: "prod_001",
-        productName: "T-shirt",
+        product: {
+          id: "prod_001",
+          name: "T-shirt",
+          price: 35.99,
+          image: "https://example.com/images/1/shirt.jpeg",
+        },
         quantity: 1,
-        unitPrice: 35.99,
         totalPrice: 35.99,
       },
       {
         id: "item_002",
-        productId: "prod_002",
-        productName: "Jeans",
+        product: {
+          id: "prod_002",
+          name: "Jeans",
+          price: 65.5,
+          image: "https://example.com/images/2/jeans.jpeg",
+        },
         quantity: 1,
-        unitPrice: 65.5,
         totalPrice: 65.5,
       },
     ];
@@ -59,7 +65,7 @@ describe('vipDiscount', () => {
 
     expect(result.applicable).toBe(true);
     expect(result.discount).toBeDefined();
-    expect(result.discount?.name).toBe('VIP 15% Discount');
+    expect(result.discount?.name).toBe('15% off');
     expect(result.discount?.amount).toBeCloseTo(expectedDiscountAmount);
     expect(result.total).toBeCloseTo(expectedTotal);
     expect(result.subtotal).toBeCloseTo(expectedSubtotal);
@@ -71,18 +77,24 @@ describe('vipDiscount', () => {
     const cartItems: CartItem[] = [
       {
         id: "item_001",
-        productId: "prod_001",
-        productName: "T-shirt",
+        product: {
+          id: "prod_001",
+          name: "T-shirt",
+          price: 35.99,
+          image: "https://example.com/images/1/shirt.jpeg",
+        },
         quantity: 1,
-        unitPrice: 35.99,
         totalPrice: 35.99,
       },
       {
         id: "item_002",
-        productId: "prod_002",
-        productName: "Jeans",
+        product: {
+          id: "prod_002",
+          name: "Jeans",
+          price: 65.5,
+          image: "https://example.com/images/2/jeans.jpeg",
+        },
         quantity: 1,
-        unitPrice: 65.5,
         totalPrice: 65.5,
       },
     ];

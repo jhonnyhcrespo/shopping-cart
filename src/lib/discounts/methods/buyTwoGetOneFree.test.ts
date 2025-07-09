@@ -29,29 +29,39 @@ describe('BuyTwoGetOneFree', () => {
     const cartItems: CartItem[] = [
       {
         id: "item_001",
-        productId: "prod_001",
-        productName: "T-shirt",
+        product: {
+          id: "prod_001",
+          name: "T-shirt",
+          price: 35.99,
+          image: "https://example.com/images/1/shirt.jpeg",
+        },
         quantity: 1,
-        unitPrice: 35.99,
         totalPrice: 35.99,
       },
       {
         id: "item_002",
-        productId: "prod_002",
-        productName: "Jeans",
+        product: {
+          id: "prod_002",
+          name: "Jeans",
+          price: 65.5,
+          image: "https://example.com/images/2/jeans.jpeg",
+        },
         quantity: 1,
-        unitPrice: 65.5,
         totalPrice: 65.5,
       },
       {
         id: "item_003",
-        productId: "prod_003",
-        productName: "Dress",
+        product: {
+          id: "prod_003",
+          name: "Dress",
+          price: 80.75,
+          image: "https://example.com/images/3/dress.jpeg",
+        },
         quantity: 1,
-        unitPrice: 80.75,
         totalPrice: 80.75,
-      }
+      },
     ];
+
     const cart = createMockCart(cartItems);
 
     const result = discountMethod.applyDiscount(cart, mockCustomer);
@@ -63,7 +73,7 @@ describe('BuyTwoGetOneFree', () => {
 
     expect(result.applicable).toBe(true);
     expect(result.discount).toBeDefined();
-    expect(result.discount?.name).toBe('Buy 2 Get 1 Free (Lowest Priced Item)');
+    expect(result.discount?.name).toBe('Buy 2 Get 1 Free');
     expect(result.discount?.amount).toBeCloseTo(expectedDiscountAmount);
     expect(result.total).toBeCloseTo(expectedTotal);
     expect(result.subtotal).toBeCloseTo(expectedSubtotal);
@@ -74,36 +84,48 @@ describe('BuyTwoGetOneFree', () => {
     const cartItems: CartItem[] = [
       {
         id: "item_001",
-        productId: "prod_001",
-        productName: "T-shirt",
+        product: {
+          id: "prod_001",
+          name: "T-shirt",
+          price: 35.99,
+          image: "https://example.com/images/1/shirt.jpeg",
+        },
         quantity: 1,
-        unitPrice: 35.99,
         totalPrice: 35.99,
       },
       {
         id: "item_002",
-        productId: "prod_002",
-        productName: "Jeans",
+        product: {
+          id: "prod_002",
+          name: "Jeans",
+          price: 65.5,
+          image: "https://example.com/images/2/jeans.jpeg",
+        },
         quantity: 1,
-        unitPrice: 65.5,
         totalPrice: 65.5,
       },
       {
         id: "item_003",
-        productId: "prod_003",
-        productName: "Dress",
+        product: {
+          id: "prod_003",
+          name: "Dress",
+          price: 80.75,
+          image: "https://example.com/images/3/dress.jpeg",
+        },
         quantity: 1,
-        unitPrice: 80.75,
         totalPrice: 80.75,
       },
       {
         id: "item_004",
-        productId: "prod_004",
-        productName: "Shoes",
+        product: {
+          id: "prod_004",
+          name: "Shoes",
+          price: 50.25,
+          image: "https://example.com/images/4/shoes.jpeg",
+        },
         quantity: 1,
-        unitPrice: 50.25,
         totalPrice: 50.25,
-      }
+      },
     ];
     const cart = createMockCart(cartItems);
 
@@ -126,18 +148,24 @@ describe('BuyTwoGetOneFree', () => {
     const cartItems: CartItem[] = [
       {
         id: "item_001",
-        productId: "prod_001",
-        productName: "T-shirt",
+        product: {
+          id: "prod_001",
+          name: "T-shirt",
+          price: 35.99,
+          image: "https://example.com/images/1/shirt.jpeg",
+        },
         quantity: 1,
-        unitPrice: 35.99,
         totalPrice: 35.99,
       },
       {
         id: "item_002",
-        productId: "prod_002",
-        productName: "Jeans",
+        product: {
+          id: "prod_002",
+          name: "Jeans",
+          price: 65.5,
+          image: "https://example.com/images/2/jeans.jpeg",
+        },
         quantity: 1,
-        unitPrice: 65.5,
         totalPrice: 65.5,
       },
     ];
@@ -166,5 +194,4 @@ describe('BuyTwoGetOneFree', () => {
     expect(result.subtotal).toBeCloseTo(0);
     expect(result.totalItems).toBe(0);
   });
-
 });
