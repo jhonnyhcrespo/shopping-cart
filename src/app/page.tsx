@@ -15,7 +15,7 @@ export default async function Home() {
         <CartDrawerProvider>
           <Navbar />
           <PromoBanner />
-          <Container maxW="8xl" mt={8}>
+          <Container maxW="8xl" py={8}>
             <ProductsGrid />
           </Container>
         </CartDrawerProvider>
